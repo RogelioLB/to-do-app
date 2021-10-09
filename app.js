@@ -16,6 +16,7 @@ app.use(express.static(path.resolve(__dirname,"./to-do-app/build")));
 app.set("port",process.env.PORT || 3000);
 
 app.use("/api",require("./routes/things"));
+app.use("/users",require("./routes/users"));
 app.use("/api/login",require("./routes/login"));
 
 app.get("/*",(req,res)=>{

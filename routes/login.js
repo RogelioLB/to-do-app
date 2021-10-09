@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { getConnection } = require("../database");
 const path = require("path");
+const parseUser = require("../utils/parseUser");
 const key = "SECRET"
 
 router.post("/register",async(req,res)=>{
@@ -21,9 +22,9 @@ router.post("/register",async(req,res)=>{
         image.mv(dir)
     }
     console.log(image)
-    await conn.query("INSERT INTO users SET ?",image ? {username,pass,email,avatar:`/avatar/${image.name}`} : {username,pass,email});
+    await conn.query("INSERT INTO users SET ?",image ? {username,pass,email,avatar:image.data} : {username,pass,email});
     const user = await conn.query(`SELECT email,username,avatar,pass,id FROM users WHERE email = '${email}'`);
-    const token = jwt.sign(parseUser(user),key)
+    const token = jwt.sign(parseUser(user.id),key)
     res.json({message:"Register Succesfully.",token});
 });
 
@@ -31,15 +32,15 @@ router.post("/",async(req,res)=>{
     const conn = await getConnection();
     const {email,password} = req.body;
     const user = await conn.query(`SELECT email,username,avatar,pass,id FROM users WHERE email = '${email}'`);
-    if(!user.length) return res.json({message:"No hay una cuenta registrada con este email."})
+    if(!user.length) return res.json({message:"No hay una cuenta registrada con este email.",status:"Fail"})
     const userParsed = parseUser(user)
-    if(!bcrypt.compareSync(password,userParsed.pass)) return res.json({message:"La contraseña es incorrecta."});
-    const token = jwt.sign(userParsed,key);
-    res.json({message:"Logged succesfully",token})
+    console.log(userParsed)
+    if(!bcrypt.compareSync(password,userParsed.pass)) return res.json({message:"La contraseña es incorrecta.",status:"Fail"});
+    const token = jwt.sign({id:userParsed.id},key);
+    res.json({message:"Logged succesfully",token,status:"Success"})
 })
 
 
 
-const parseUser = (user) =>JSON.parse(JSON.stringify(user[0]));
 
 module.exports = router;

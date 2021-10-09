@@ -9,9 +9,12 @@ export const useUser = () =>{
     const history = useHistory();
 
     useEffect(()=>{
-        setUser(jwt.decode(token));
-        console.log(location.pathname)
-        console.log(location.pathname !== "/" && location.pathname !== "/register" && location.pathname !== "/login" && !token)
+        setUser(token)
+        fetch("/users",{
+            headers:{
+                "Authorization":"Bearer "+ token
+            }
+        }).then(res=>res.json()).then(res=>setUser(res[0]));
         if(location.pathname !== "/" && location.pathname !== "/register" && location.pathname !== "/login" && !token)  history.replace("/");
     },[token,history,location.pathname]);
 

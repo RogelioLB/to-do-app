@@ -13,13 +13,16 @@ const Login = () => {
 
     const handleClick = (e) =>{
         e.preventDefault();
-        fetch("http://192.168.0.89:3000/api/login",{
+        fetch("/api/login",{
             method:"POST",
             body:JSON.stringify({email:email.value,password:password.value}),
             headers:{
                 "Content-Type":"application/json"
             }
-        }).then(res=>res.json()).then(res=>login(res.token)).finally(()=>history.replace("/home")).catch(err=>console.log(err))
+        }).then(res=>res.json()).then(res=>{
+            if(res.status === "Success") return login(res.token);
+            throw new Error(res.message)
+        }).then(()=>history.replace("/home")).catch(err=>console.log(err))
     }
 
     return (
