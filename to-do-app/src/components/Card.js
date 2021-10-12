@@ -71,6 +71,21 @@ animation:skeleton 1s infinite alternate;
     }
 }
 `
+
+const CardBottom = styled(CardTop)`
+display:flex;
+justify-content: flex-end;
+align-items:center;
+`
+
+const Circle = styled.div`
+width:40px;
+height:40px;
+border-radius:50%;
+background-color:${props=>props.state === "ACTIVE" ? "#2fd11a" : "#c21b1b"};
+margin-right: 10px;
+`
+
 const Card = ({author,thing}) => {
     return (
         <CardContainer>
@@ -88,6 +103,9 @@ const Card = ({author,thing}) => {
                     }
                 </ImageContainer>
             </CardBody>
+            <CardBottom>
+                {thing.state === "ACTIVE" ? <Circle state={thing.state}/> : <></>}{thing.state}
+            </CardBottom>
         </CardContainer>
     )
 }
