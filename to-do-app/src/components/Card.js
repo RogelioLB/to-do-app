@@ -4,11 +4,12 @@ import styled from 'styled-components'
 const CardContainer = styled.div`
 background-color: #fff;
 width:100%;
+border-bottom:1px solid rgb(239, 243, 244);
 `
 
 const CardTop = styled.div`
 background: #FFFFFF;
-box-shadow: 0px 0px 24px -1px rgba(0, 0, 0, 0.1);
+border-bottom:1px solid rgb(239, 243, 244);
 padding:10px;
 display:flex;
 align-items: center;
@@ -39,6 +40,7 @@ animation:skeleton 1s infinite alternate;
 const CardBody = styled.div`
 background-color: #fff;
 padding:5px;
+border-bottom:1px solid rgb(239, 243, 244);
 `
 
 const ImageContainer = styled.div`

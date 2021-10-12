@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import Card from '../components/Card'
 import TopBar from '../components/TopBar'
 import { useThing } from '../hooks/useThings'
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faPenNib} from "@fortawesome/free-solid-svg-icons"
 
 const Container = styled.div`
 position:relative;
@@ -24,6 +25,13 @@ align-items: center;
 color:white;
 text-decoration:none;
 z-index:1;
+transition:background-color,.2s ease;
+
+&:hover{
+    background-color: #e5e5e5;
+    color:#2563EB;
+    border:1px solid #2563EB;
+}
 `
 
 const Home = () => {
@@ -39,7 +47,7 @@ const Home = () => {
                         ))
                     )
                 }
-                <AddButton to="/add">A</AddButton>
+                <AddButton to="/add"><FontAwesomeIcon icon={faPenNib}/></AddButton>
             </Container>
         </>
     )

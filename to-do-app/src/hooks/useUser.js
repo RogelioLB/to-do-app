@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useLocation, useHistory } from "react-router-dom";
-import jwt from "jsonwebtoken"
 
 export const useUser = () =>{
     const [user,setUser] = useState(null);
@@ -10,7 +9,7 @@ export const useUser = () =>{
 
     useEffect(()=>{
         setUser(token)
-        fetch("/users",{
+        fetch("http://localhost:3000/users",{
             headers:{
                 "Authorization":"Bearer "+ token
             }

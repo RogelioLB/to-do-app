@@ -21,7 +21,7 @@ const Register = () => {
         formData.append("username",username.value)
         formData.append("email",email.value)
         formData.append("password",password.value)
-        fetch("/api/login/register",{
+        fetch("http://localhost:3000/api/login/register",{
             method:"POST",
             body:formData
         }).then(res=>res.json()).then(res=>login(res.token)).finally(()=>history.replace("/home")).catch(err=>console.log(err));
