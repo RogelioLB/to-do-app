@@ -6,7 +6,7 @@ export const useThing = () => {
 
     const requestThings = async() =>{
         setLoading(true)
-        fetch("http://localhost:3000/api/things").then(res=>res.json()).then(res=>{
+        fetch("/api/things").then(res=>res.json()).then(res=>{
             setThings(res);
             setLoading(false);
         }).catch(err=>console.log(err));

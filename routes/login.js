@@ -24,7 +24,7 @@ router.post("/register",async(req,res)=>{
     console.log(image)
     await conn.query("INSERT INTO users SET ?",image ? {username,pass,email,avatar:image.data} : {username,pass,email});
     const user = await conn.query(`SELECT email,username,avatar,pass,id FROM users WHERE email = '${email}'`);
-    const token = jwt.sign(parseUser(user.id),key)
+    const token = jwt.sign({id:parseUser(user).id},key)
     res.json({message:"Register Succesfully.",token});
 });
 

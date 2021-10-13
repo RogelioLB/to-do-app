@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleClick = (e) =>{
         e.preventDefault();
-        fetch("http://localhost:3000/api/login",{
+        fetch("/api/login",{
             method:"POST",
             body:JSON.stringify({email:email.value,password:password.value}),
             headers:{

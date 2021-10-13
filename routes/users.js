@@ -6,6 +6,7 @@ const parseToken = require("../utils/parseToken");
 router.get("/",verify,async(req,res)=>{
     const conn = await getConnection();
     const {id} = jwt.decode(req.token);
+    console.log(jwt.decode(req.token))
     const users = await conn.query(`SELECT * FROM users WHERE users.id = ${id}`).map((usuario)=>{
         if(usuario.avatar){
             const buffer = Buffer.from(usuario.avatar)

@@ -85,3 +85,45 @@ align-items: center;
 flex-direction: column;
 flex:1;
 `;
+
+export const TextArea = styled.textarea`
+padding:5px;
+outline:none;
+border:1px solid transparent;
+border-radius: 2px;
+margin:10px 0;
+font-size:18px;
+min-height:150px;
+max-height:150px;
+max-width:100%;
+min-width:100%;
+&:focus{
+    border:1px solid #2563EB;
+}
+`
+
+export const ImageCard = styled.img`
+max-width: clamp(240px,60.5vw,350px);
+object-fit: cover;
+margin: 0 10px 0 0;
+border-radius: 3px;
+animation:skeleton 1s infinite alternate;
+@keyframes skeleton{
+    0%{
+        background-color: hsl(200,20%,70%);
+    }
+    100%{
+        background-color: hsl(200,20%,95%);
+    }
+}
+`
+
+export const ImageWrapper = styled.div`
+margin-top:10px;
+display:flex;
+overflow-y: hidden;
+
+& img:last-child{
+    margin:0 !important;
+}
+`
