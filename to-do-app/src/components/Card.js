@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ImageCard,ImageWrapper,Wrapper} from './Styled'
+import { ImageCard,Wrapper} from './Styled'
 
 const CardContainer = styled.div`
 background-color: #fff;
