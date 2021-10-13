@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ImageCard,ImageWrapper,Wrapper} from './Styled'
 
 const CardContainer = styled.div`
 background-color: #fff;
@@ -43,36 +44,11 @@ padding:5px;
 border-bottom:1px solid rgb(239, 243, 244);
 `
 
-const ImageContainer = styled.div`
-margin-top:10px;
-display:flex;
-overflow-y: hidden;
-
-& img:last-child{
-    margin:0 !important;
-}
-`
-
 const Description = styled.p`
 font-size:18px;
 font-weight:16px;
 `
 
-const ImageCard = styled.img`
-max-width: clamp(240px,60.5vw,350px);
-object-fit: cover;
-margin: 0 10px 0 0;
-border-radius: 3px;
-animation:skeleton 1s infinite alternate;
-@keyframes skeleton{
-    0%{
-        background-color: hsl(200,20%,70%);
-    }
-    100%{
-        background-color: hsl(200,20%,95%);
-    }
-}
-`
 
 const CardBottom = styled(CardTop)`
 display:flex;
@@ -97,13 +73,13 @@ const Card = ({author,thing}) => {
             </CardTop>
             <CardBody>
                 <Description>{thing.description}</Description>
-                <ImageContainer>
+                <ImageWrapper>
                     {
                         thing.images.map((image,id)=>(
                             <ImageCard src={image.path} key={id}/>
                         ))
                     }
-                </ImageContainer>
+                </ImageWrapper>
             </CardBody>
             <CardBottom>
                 {thing.state === "ACTIVE" ? <Circle state={thing.state}/> : <></>}{thing.state}

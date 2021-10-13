@@ -107,6 +107,7 @@ max-width: clamp(240px,60.5vw,350px);
 object-fit: cover;
 margin: 0 10px 0 0;
 border-radius: 3px;
+max-height:280px;
 animation:skeleton 1s infinite alternate;
 @keyframes skeleton{
     0%{
